@@ -1,9 +1,28 @@
-const express = require("express");
+// app.js
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static("public"));
+app.use(bodyParser.json());
 
-app.listen(port, () => {
-    console.log('Server is running at http://localhost:${port}');
+// MongoDB connection
+mongoose.connect('mongodb://localhost/bookreviewdb', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Define MongoDB Schema and Models (using Mongoose)
+
+// API Endpoints
+app.get('/api/books', (req, res) => {
+  // Logic to fetch books from the database
+});
+
+app.post('/api/reviews', (req, res) => {
+  // Logic to add a review to the database
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(Server running on http://localhost:${PORT});
 });
